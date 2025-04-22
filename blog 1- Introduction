@@ -1,0 +1,33 @@
+# 🩺 ECG Signal Classification for Arrhythmia Detection Using Machine Learning in MATLAB
+
+## 👋 Introduction
+
+Hello World!  
+We are **Mrunmayi Sanjay Badgujar** and **Venayak Krishi Pillay**, final-year mechanical student at the university of the south pacific working on a critical health-tech project titled **"ECG Signal Classification for Arrhythmia Detection using Machine Learning in MATLAB"** for our MM466 course.
+
+## 💡 Why This Project Matters
+
+Cardiac arrhythmias are abnormal heart rhythms that can be dangerous if not detected early. Manual ECG analysis is time-consuming and error-prone. Our solution is to automate the ECG classification process using **machine learning**, which promises better accuracy, speed, and reliability in detecting heart conditions.
+
+---
+
+## 🛠️ Project Overview
+
+Our approach involves:
+
+- 📥 **Preprocessing** ECG data from the **MIT-BIH** databases
+- 🔍 **Feature Extraction** from time and frequency domains
+- 🤖 **Training Machine Learning Models** like SVM, k-NN, Random Forest, CNN, and LSTM
+- 💻 **Developing a GUI in MATLAB** for real-time ECG signal classification
+
+---
+
+## 🌍 Impact
+
+This system will assist healthcare professionals by:
+
+- Reducing diagnostic errors  
+- Enabling real-time and remote ECG analysis  
+- Supporting telemedicine and wearable health applications  
+
+Stay tuned as we transform code into care 💙
