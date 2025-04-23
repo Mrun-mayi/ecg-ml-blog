@@ -4,16 +4,7 @@
 
 Over the past few weeks, we’ve conducted a deep dive into various machine learning techniques for ECG classification.
 
-We explored:
-
-- ✅ **Support Vector Machines (SVM)** for high-dimensional data
-- 📌 **k-Nearest Neighbors (k-NN)** for simplicity
-- 🌲 **Random Forests** for ensemble accuracy
-- 🧠 **Deep Learning models** like CNN, LSTM, and CNN-LSTM hybrids for spatial and temporal feature learning
-
 ---
-
-## 📈 Feature Engineering & Preprocessing
 
 We processed real ECG datasets such as:
 
@@ -22,29 +13,16 @@ We processed real ECG datasets such as:
 
 Steps taken:
 
-- ⚙️ **Data Cleaning** using MATLAB (`normalize`, `zscore`, `transform`)
-- 🧬 **Feature Extraction**:
-  - R-R Intervals
-  - QRS Complex Duration
-  - P-wave & T-wave Morphology
-  - FFT and Wavelet Transforms for frequency features
+- ⚙️ **Data Cleaning** using MATLAB 
+We have removed all the rows and columns with missing data.
 
 ---
 
-## 🤖 Model Training & Evaluation
+## 🤖 Model Tra
 
-We trained various models using MATLAB tools like:
+We have drawn various types of graph to explore the data. Graph such as correlation matrix, boxplot, histogram. 
 
-- `fitctree`, `fitcsvm`, `confusionmat`, `crossval`
 
-Our CNN-LSTM model achieved up to **99.7% accuracy** in detecting ventricular ectopic beats (VEB), showcasing excellent performance for real-time ECG classification.
 
----
-
-## 🛠️ What’s Next?
-
-- Finalizing the **MATLAB GUI** for real-time use  
-- Integrating **Explainable AI (XAI)** for clinical trust  
-- Conducting **extensive testing and error analysis**
 
 We’re closing in on a practical tool to revolutionize cardiac diagnostics. Stay with us for more breakthroughs!
