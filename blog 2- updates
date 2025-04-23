@@ -18,7 +18,6 @@ We have removed all the rows and columns with missing data.
 
 ---
 
-## 🤖 Model Tra
 
 We have drawn various types of graph to explore the data. Graph such as correlation matrix, boxplot, histogram. 
 
