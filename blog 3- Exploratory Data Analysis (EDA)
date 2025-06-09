@@ -1,0 +1,129 @@
+# 🩺 ECG Arrhythmia Dataset – Exploratory Data Analysis (EDA)
+
+## 📌 Project Overview
+
+This project performs a comprehensive **Exploratory Data Analysis (EDA)** on a cleaned and combined ECG arrhythmia dataset. The dataset includes annotated heartbeat data from multiple patients, enabling analysis and modeling for arrhythmia classification. Our goal here is to understand the underlying structure and distribution of the ECG features across various beat types such as **Normal (N)**, **Ventricular Ectopic (VEB)**, **Supraventricular Ectopic (SVEB)**, **Fusion (F)**, and **Unknown (Q)**.
+
+---
+
+## 📂 Dataset Loading and Preparation
+
+We began by loading a pre-cleaned Excel file:
+
+```matlab
+data = readtable('Cleaned_Combined_Dataset.xlsx');
+```
+
+### Outlier Removal
+
+We filtered extreme outliers in the `x0_rPeak` feature using domain-informed thresholds:
+
+```matlab
+data = data(data.('0_rPeak') > -3000 & data.('0_rPeak') < 3000, :);
+```
+
+### Normalization
+
+All numeric features were normalized using z-score normalization for uniformity:
+
+```matlab
+T_norm(:, numericVars) = varfun(@(x) (x - mean(x)) ./ std(x), data(:, numericVars));
+```
+
+### Beat Type Filtering
+
+We retained five key beat types for modeling:
+
+```matlab
+desiredTypes = ["N", "SVEB", "VEB", "F", "Q"];
+T_filtered = data(ismember(data.type, desiredTypes), :);
+```
+
+---
+
+## 📊 Dataset Overview
+
+* **Total Rows**: `963,654`
+* **Total Features**: `35`
+* **Beat Types Present**: N, SVEB, VEB, F, Q
+* **Number of Records**: >100 unique patient records from PhysioNet ECG databases
+
+---
+
+## 📈 Statistical Summary
+
+* **Mean Values** and **Standard Deviations** were computed for all numeric features.
+* Key indicators such as `rPeak`, `pPeak`, `qrs_interval`, and `pq_interval` showed insightful trends for arrhythmia detection.
+
+---
+
+## 📉 Visualizations
+
+### 🔢 Histograms
+
+Histograms were plotted for major waveform peaks:
+
+* `x0_rPeak`
+* `x0_pPeak`
+* `x0_tPeak`
+
+### 📦 Boxplots
+
+Boxplots revealed distributional differences across beat types, especially in `x0_rPeak`, supporting class separability.
+
+### 🔗 Correlation Matrix
+
+A heatmap of feature correlations was generated to identify multicollinearity and useful combinations for dimensionality reduction.
+
+### 📊 Class Distribution
+
+```matlab
+bar(typeCounts);
+xticklabels(unique(T_filtered.type));
+```
+
+This gave a clear view of the class imbalance (e.g., Normal beats dominate the dataset).
+
+---
+
+## 🧬 Scatter Plots
+
+### 2D Colored Scatter
+
+```matlab
+gscatter(data.x0_rPeak, data.x0_tPeak, data.type);
+```
+
+This scatter plot helped visualize class clusters in the `rPeak` vs `tPeak` feature space.
+
+### 3D Grouped Scatter
+
+```matlab
+gscatter3(data.x0_rPeak, data.x0_tPeak, data.x0_pPeak, data.type, ... );
+```
+
+A more dynamic visualization displaying waveform separability across 3 dimensions.
+
+---
+
+## 📌 Final Class Distribution
+
+| Beat Type   | Count   |
+| ----------- | ------- |
+| Normal (N)  | 884,214 |
+| VEB         | 51,669  |
+| SVEB        | 18,540  |
+| Fusion (F)  | 1,256   |
+| Unknown (Q) | 7,975   |
+
+---
+
+## 🧠 Next Steps
+
+With this foundational EDA:
+
+* We are ready to apply **dimensionality reduction techniques (e.g., PCA)**.
+* Perform **class balancing (e.g., SMOTE)**.
+* Train machine learning models for arrhythmia classification.
+
+Stay tuned for model training and evaluation in the next notebook!
