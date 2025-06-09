@@ -14,11 +14,7 @@ We processed real ECG datasets such as:
 Steps taken:
 
 - ⚙️ **Data Cleaning** using MATLAB 
-We have removed all the rows and columns with missing data.
-
----
-
-
+We have done Fillmissing in matlab that basically takes the average of the top values to populate the missing values. 
 We have drawn various types of graph to explore the data. Graph such as correlation matrix, boxplot, histogram. 
 
 
