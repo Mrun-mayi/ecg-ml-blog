@@ -4,26 +4,70 @@
 
 Over the past few weeks, we’ve conducted a deep dive into various machine learning techniques for ECG classification.
 
----
+The data is from MIT-BIH (Massachusetts Institute of Technology - Beth Israel Hospital)
+--The data we used already had features extractured from the raw files in it already. This the kaggle link of the data: https://www.kaggle.com/datasets/sadmansakib7/ecg-arrhythmia-classification-dataset
 
-We processed real ECG datasets such as:
+
+List of Abbreviations used in the project 
+
++--------------+---------------------------------------------------------------+
+| Abbreviation | Full Form                                                    |
++--------------+---------------------------------------------------------------+
+| ECG          | Electrocardiogram                                            |
+| MIT-BIH      | Massachusetts Institute of Technology - Beth Israel Hospital |
+| INCART       | St. Petersburg Institute of Cardiological Technics           |
+| ML           | Machine Learning                                             |
+| SVM          | Support Vector Machine                                       |
+| k-NN         | k-Nearest Neighbors                                          |
+| RF           | Random Forest                                                |
+| ANN          | Artificial Neural Network                                    |
+| CNN          | Convolutional Neural Network                                 |
+| RNN          | Recurrent Neural Network                                     |
+| LSTM         | Long Short-Term Memory                                       |
+| SVEB         | Supraventricular Ectopic Beat                                |
+| VEB          | Ventricular Ectopic Beat                                     |
+| QRS          | QRS Complex (part of ECG wave)                               |
+| GUI          | Graphical User Interface                                     |
+| FFT          | Fast Fourier Transform                                       |
+| WT           | Wavelet Transform                                            |
+| PSD          | Power Spectral Density                                       |
+| HRV          | Heart Rate Variability                                       |
+| HIPAA        | Health Insurance Portability and Accountability Act          |
+| GDPR         | General Data Protection Regulation                           |
+| XAI          | Explainable Artificial Intelligence                          |
+| PCA          | Principal Component Analysis                                 |
+| SMOTE        | Synthetic Minority Oversampling Technique                    |
+| RMSE         | Root Mean Squared Error                                      |
+| Q            | Unknown beat                                                 |
+| F            | Fusion Beat                                                  |
++--------------+---------------------------------------------------------------+
+
+
+We processed real ECG datasets below are the files that we used: 
 
 - MIT-BIH Arrhythmia
 - INCART 2-lead Arrhythmia
+- MIT-BIH Supraventricular Arrhythmia
+- Sudden Cardiac Death Holter
 
-![Data Count](images/Screenshot 2025-06-09 155947.png)
-
-
-
-![Image Alt](https://github.com/Mrun-mayi/ecg-ml-blog/blob/main/Screenshot%202025-06-09%20155947.png?raw=true)
-
-Steps taken:
 
 - ⚙️ **Data Cleaning** using MATLAB 
 We have done Fillmissing in matlab that basically takes the average of the top values to populate the missing values. 
-We have drawn various types of graph to explore the data. Graph such as correlation matrix, boxplot, histogram. 
+
+The combined and cleaned data breakdown came to the below: 
+
++------------+--------+
+| Data Type  | Count  |
++------------+--------+
+| Normal     | 884214 |
+| VEB        | 51669  |
+| SVEB       | 18540  |
+| Q          | 7975   |
+| F          | 1256   |
++------------+--------+
+
+🫀 Total data = 963,654
 
 
 
 
-We’re closing in on a practical tool to revolutionize cardiac diagnostics. Stay with us for more breakthroughs!
