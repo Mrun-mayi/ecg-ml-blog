@@ -126,4 +126,6 @@ With this foundational EDA:
 * Perform **class balancing (e.g., SMOTE)**.
 * Train machine learning models for arrhythmia classification.
 
+# We have also uploaded the pdf o the mlx file which shows all the graphs and the exact code that was used.
+
 Stay tuned for model training and evaluation in the next notebook!
