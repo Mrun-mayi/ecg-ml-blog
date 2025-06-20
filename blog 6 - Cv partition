@@ -1,0 +1,64 @@
+📂 Data Partitioning Strategy after SMOTE (ECG ML Project)
+After successfully balancing our ECG dataset using SMOTE, we implemented a structured partitioning strategy to split the data for training, validation, and testing using MATLAB’s cvpartition function.
+
+🔍 Why This Matters
+Even after SMOTE, randomly splitting data can lead to biased or overfitted models if not done carefully. Therefore, we used a two-step stratified partitioning approach to ensure:
+
+Representative class distributions across all subsets,
+
+Isolation of a final test set (15%) not seen during training,
+
+A clean validation set (15%) from the remaining data for hyperparameter tuning.
+
+🧪 Partition Breakdown
+✅ Step 1: Hold Out 15% for Final Testing
+matlab
+Copy
+Edit
+cv1 = cvpartition(Y_full_bal, 'HoldOut', 0.15);
+X_test = X_full_bal(test(cv1), :);
+Y_test = Y_full_bal(test(cv1));
+This ensures the final model evaluation is done on completely unseen data.
+
+✅ Step 2: From the Remaining 85%, Extract 15% for Validation
+matlab
+Copy
+Edit
+cv2 = cvpartition(Y_remain, 'HoldOut', 0.1765);
+X_train = X_remain(training(cv2), :);
+Y_train = Y_remain(training(cv2));
+X_val = X_remain(test(cv2), :);
+Y_val = Y_remain(test(cv2));
+Using 17.65% of the remaining 85% yields approximately 15% of the total data for validation.
+
+📋 Final Data Allocation
+Subset	Proportion	Purpose
+Training	70%	Model fitting
+Validation	15%	Hyperparameter tuning
+Test	15%	Final performance evaluation
+
+📦 Output: Training Table Preparation
+To use the training set in MATLAB’s Classification Learner or export it for external models, we converted it into a clean table format:
+
+matlab
+Copy
+Edit
+T_train = array2table(X_train);
+T_train.Label = Y_train;
+for i = 1:width(T_train) - 1
+    T_train.Properties.VariableNames{i} = sprintf('Feature_%d', i);
+end
+This structure ensures compatibility with classification functions and apps in MATLAB.
+
+📁 Files Used
+cvpartitionsmote.mlx – Contains full implementation of partition logic
+
+T_train – Table output for training
+
+X_val, Y_val – Validation data for tuning
+
+X_test, Y_test – Held-out test set
+
+🧠 Summary
+This partitioning technique is simple but essential for maintaining class balance integrity across datasets after SMOTE. It enables fair evaluation and helps prevent data leakage, which is crucial in medical ML applications like ECG classification.
+
