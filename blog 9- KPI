@@ -1,0 +1,51 @@
+📈 Key Performance Indicators (KPIs) – ECG Model Evaluation
+To objectively evaluate the effectiveness of all trained models, we computed macro-averaged performance metrics using the full, SMOTE-balanced ECG dataset. These KPIs provide a deeper insight beyond raw accuracy, measuring how well each model performs across all heartbeat classes.
+
+✅ What We Measured
+For each model, we calculated:
+
+Metric	Definition
+Accuracy	Percentage of correct predictions on the entire dataset
+Precision	How many of the predicted positives are actually correct
+Recall	How many actual positives were correctly predicted
+F1 Score	Harmonic mean of precision and recall, giving a balance between them
+
+These were calculated using macro-averaging, which treats all classes equally — an important detail when working with imbalanced or oversampled data.
+
+💻 Code Overview
+We looped through each model and computed all metrics based on full-dataset predictions:
+
+matlab
+Copy
+Edit
+for i = 1:length(models)
+    ...
+    predictions = model.predictFcn(X_test_table);
+    [confMat, classOrder] = confusionmat(Y_true, Y_pred);
+    
+    % Loop through classes to calculate TP, FP, FN
+    % Then calculate macro precision, recall, and F1
+end
+🧪 Summary Table of KPIs
+| **Model**                | **Accuracy (%)** | **Precision** | **Recall** | **F1 Score** |
+|--------------------------|------------------|---------------|------------|--------------|
+| Tree                     | 84.90            | 0.852         | 0.849      | 0.850        |
+| Random Forest            | 99.05            | 0.990         | 0.990      | 0.990        |
+| KNN                      | 94.56            | 0.947         | 0.946      | 0.945        |
+| Naive Bayes              | 65.81            | 0.675         | 0.658      | 0.655        |
+| Narrow Neural Net        | 89.39            | 0.894         | 0.894      | 0.894        |
+| Medium Neural Net        | 93.16            | 0.932         | 0.932      | 0.932        |
+| Wide Neural Net          | 97.30            | 0.973         | 0.973      | 0.973        |
+| Bilayered Neural Net     | 90.66            | 0.907         | 0.907      | 0.907        |
+| Trilayered Neural Net    | 90.53            | 0.906         | 0.905      | 0.905        |
+| K-Fold Tree              | 84.98            | 0.854         | 0.850      | 0.851        |
+| K-Fold Naive Bayes       | 65.81            | 0.675         | 0.658      | 0.655        |
+| **K-Fold Random Forest** | **99.36**        | **0.994**     | **0.994**  | **0.994**    |
+
+
+🏆 Key Insights
+K-Fold Random Forest had the best performance across all metrics, with >99% accuracy, precision, recall, and F1 score.
+
+Neural Networks, especially the Wide and Medium configurations, also performed strongly.
+
+Naïve Bayes underperformed due to its simplistic assumptions, reaffirming its unsuitability for complex biomedical datasets.
