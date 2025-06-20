@@ -1,0 +1,82 @@
+🤖 Model Training and Evaluation – ECG Classification in MATLAB
+This part of the project focuses on training and evaluating machine learning models for detecting arrhythmias from ECG data. After preprocessing, balancing the dataset using SMOTE, and partitioning the data into training, validation, and test sets, we trained a wide range of models using MATLAB.
+
+🧠 Models Trained
+We trained 12 different classification models using MATLAB’s Classification Learner and custom scripts. These include:
+
+🔷 Traditional ML Models:
+Decision Tree
+
+Random Forest
+
+k-Nearest Neighbors (KNN)
+
+Naïve Bayes
+
+🔶 Neural Network Variants:
+Narrow Neural Network
+
+Medium Neural Network
+
+Wide Neural Network
+
+Bilayered Neural Network
+
+Trilayered Neural Network
+
+🔁 Cross-Validated Models:
+K-Fold Tree
+
+K-Fold Naïve Bayes
+
+K-Fold Random Forest
+
+🧪 Evaluation Process
+Each model was evaluated using:
+
+X_test – the 15% test set held out after SMOTE
+
+Accuracy Score – calculated as the percentage of correct predictions
+
+Confusion Matrix – visual summary of classification results
+
+MATLAB Snippet:
+matlab
+Copy
+Edit
+for i = 1:length(models)
+    model = models{i};
+    modelName = modelNames{i};
+    X_test_table = array2table(X_test, 'VariableNames', model.RequiredVariables);
+    predictions = categorical(model.predictFcn(X_test_table));
+    acc = mean(predictions == Y_test_cat) * 100;
+    accuracies(i) = acc;
+
+    % Plot confusion matrix
+    cm = confusionchart(Y_test_cat, predictions);
+    cm.Title = sprintf('%s - Accuracy: %.2f%%', modelName, acc);
+end
+📊 Model Accuracy Comparison
+Model	Accuracy (%)
+Tree	84.73
+Random Forest	97.71
+KNN	94.45
+Naive Bayes	65.76
+Narrow Neural Net	89.60
+Medium Neural Net	93.18
+Wide Neural Net	96.91
+Bilayered Neural Net	90.64
+Trilayered Neural Net	90.53
+K-Fold Tree	84.98
+K-Fold Naive Bayes	65.73
+K-Fold Random Forest	99.40
+
+✅ The K-Fold Random Forest model achieved the highest accuracy at 99.40%, making it the best performing classifier in this study.
+
+📁 Files Involved
+TrainedModels.mlx – Training + evaluation loop
+
+resultTable – Summary table of all model performances
+
+Confusion matrix figures – Generated for each model to visualize performance
+
