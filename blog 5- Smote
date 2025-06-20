@@ -1,0 +1,71 @@
+📊 Balancing ECG Classes using SMOTE in MATLAB
+This section of our ECG Arrhythmia Detection project focuses on resolving one of the most critical issues in biomedical datasets—class imbalance—using a custom SMOTE (Synthetic Minority Over-sampling Technique) implementation.
+
+🔍 Why Balance the Data?
+The dataset derived from the MIT-BIH Arrhythmia Database (via Kaggle) was highly imbalanced:
+
+Class	Original Count
+N	884,214
+VEB	51,669
+SVEB	18,540
+Q	7,975
+F	1,256
+
+Training a model on this distribution would result in bias toward the majority class ("N"), and poor recall for minority classes like "F", "Q", and "SVEB".
+
+🛠 What SMOTE Did
+We implemented a custom SMOTE-based function in MATLAB to:
+
+Downsample the majority class ("N") to 51,669 samples.
+
+Oversample minority classes ("F", "Q", "SVEB") up to 51,669 each.
+
+Ensure all 5 classes (["N", "VEB", "SVEB", "Q", "F"]) have balanced representation.
+
+💻 Code Snippet:
+matlab
+Copy
+Edit
+% Load and split dataset
+data = T_normalized;
+original_features = data{:, 3:end};         
+original_labels = string(data{:, 2});       
+
+% Target class balance
+target_classes = ["N","VEB","SVEB", "Q", "F"];
+target_count = 51669;
+
+% Apply custom SMOTE
+[X_full_bal, Y_full_bal] = customSMOTE_to_target_all(original_features, original_labels, target_classes, target_count);
+📊 Resulting Distribution
+Class	Before SMOTE	After SMOTE
+F	1,256	51,669
+N	884,214	51,669
+Q	7,975	51,669
+SVEB	18,540	51,669
+VEB	51,669	51,669
+
+📈 Visualization
+The script also generates a before/after bar chart of class distribution to visually confirm balance:
+
+matlab
+Copy
+Edit
+subplot(1,2,1)
+bar(categorical(unique_labels_before), counts_before)
+title('Before Balancing')
+
+subplot(1,2,2)
+bar(categorical(unique_labels_after), counts_after)
+title('After Balancing (SMOTE + Downsampling)')
+✅ Benefits
+Eliminated classification bias toward "Normal"
+
+Improved recall and precision for underrepresented classes
+
+Enabled better multi-class performance (as seen in the confusion matrix results
+
+
+The pdf files of this code have also been uploaded. 
+
+
