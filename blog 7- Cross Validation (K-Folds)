@@ -1,0 +1,42 @@
+🔁 K-Fold Cross-Validation for ECG Signal Classification
+To improve the robustness and generalizability of our machine learning models, we implemented K-Fold Cross-Validation on the fully balanced ECG dataset (X_full_bal, Y_full_bal). This method allows every data point to be used for both training and validation, reducing the risk of overfitting and ensuring fair evaluation.
+
+🧪 What is K-Fold?
+K-Fold Cross-Validation splits the data into K equal subsets (or folds). The model is trained on K-1 folds and validated on the remaining one. This process repeats K times, with each fold being used exactly once as the validation set.
+
+🛠️ Implementation in MATLAB
+matlab
+Copy
+Edit
+% Convert features to table
+S_data = array2table(X_full_bal);
+for i = 1:width(S_data)
+    S_data.Properties.VariableNames{i} = sprintf('Feature_%d', i);
+end
+
+% Add class labels
+S_data.Label = categorical(Y_full_bal);
+We used this formatted table S_data to train multiple models using K-Fold Cross-Validation within the MATLAB Classification Learner App and through scripts.
+
+🧠 Models Trained
+Three models were compared using K-Fold CV:
+
+Decision Tree
+
+Naïve Bayes
+
+Random Forest
+
+🏆 Key Result
+Out of all models trained:
+
+✅ Random Forest had the highest validation accuracy and generalization performance, confirming its robustness across multiple folds.
+
+📈 Why This Matters
+Using K-Fold CV ensures that:
+
+Every sample in the dataset is used for both training and validation,
+
+The model is tested across various data distributions,
+
+Final performance metrics are more reliable and less dependent on a single random train-test split.
